@@ -46,6 +46,7 @@ In window ```OpenWrt Configuration``` set up those parameters:
 - In **Target Devices** select:
   - ```Onion Omega2```
   - ```Onion Omega2+```
+
 Now save your config to default file ```.config``` and exit config menu.
 
 ### 1.3. Compilation
@@ -217,6 +218,7 @@ driver     id         name       output     state      subsystem  uevent
 You should see in directory with 2100H, two files:
 * output
 * state
+
 Those two prove that w1_ds2413_2100h kernel module driver is loaded successfully.
 
 ## 2.4. Using 2100H from bash/shell
@@ -260,4 +262,4 @@ Result ```3c``` -> ```0b0011 1100```: Latch A=```0```, Pin A=```0``` , Latch B=`
 * https://onion.io/2bt-reading-temperature-from-a-1-wire-sensor/
 
 
-# 3. EOF
+# 4. EOF
