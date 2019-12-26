@@ -21,6 +21,7 @@ include $(INCLUDE_DIR)/package.mk
 define KernelPackage/$(PKG_NAME)
 	SUBMENU:=Other modules
 	DEPENDS:=@(TARGET_ramips_mt76x8||TARGET_ramips_mt7688)
+	DEPENDS:= +kmod-w1
 	TITLE:=2100h driver (DS2413 clone)
 	FILES:= $(PKG_BUILD_DIR)/w1_ds2413_2100h.ko
 endef

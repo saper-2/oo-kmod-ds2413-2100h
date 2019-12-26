@@ -1,14 +1,28 @@
 /*
- * w1_ds2413_2100h.c - w1 family 85 (clone DS2413: 3A 2100H ) driver
+ * w1_ds2413_2100h.c - w1 family 85 driver for 3A 2100H (the Chinese clone of Maxim DS2413)
  * based on w1_ds2413.c by Jean-Francois Dagenais <dagenaisj@sonatest.com>
  *
- * Copyright (c) 2016 Przemyslaw W (saper_2) <sapers.2@gmail.net>
- *
+ * Copyright (c) 2019 Przemyslaw W (saper_2) <sapers.2@gmail.net>
+ * 
+ * Fix gmail domain suffix to proper one (spam-bot protection).
+ * 
+ * 
  * This source code is licensed under the GNU General Public License,
- * Version 2. See the file COPYING for more details.
- */
-
- /*
+ * Version 2. See the file LICENSE for more details.
+ * 
+ * 
+ * Warranty:
+ * I do not take any responsibilities for this software, it is provided "AS-IS". 
+ * You are using this software by your own volition.
+ *
+ * 
+ * 
+ * Changelog:
+ * - 2016-04-20 - Created this driver for Raspberry Pi kernel
+ * - 2019-12-26 - Driver tested with kernel 4.14+ and migrated for Onion Omega2 boards
+ * 
+ * 
+ * 
  * Tested on Raspberry Pi 2 from shell, must be called by root (sudo won't work ("permission denied")).
  * Read IO - for bit values refer to datasheet: DS2313, function: PIO ACCESS READ [F5h]: 
  * root@piv2:/sys/bus/w1/devices/85-xxxxxxxxxxxx# xxd -b state
@@ -33,6 +47,7 @@
 //#include "../w1_family.h"
 
 #define W1_FAMILY_2100H 0x85
+#define DRV_VERSION "1.2-20191226"
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Przemyslaw W (saper_2) <sapers.2@gmail.com>");
@@ -152,6 +167,7 @@ static struct w1_family w1_family_85 = {
 
 static int __init w1_f85_init(void)
 {
+	printk(KERN_INFO " w1 family 85 driver for 2100H (clone of DS2413 - 2 Pin IO) version " DRV_VERSION "\n");
 	return w1_register_family(&w1_family_85);
 }
 
